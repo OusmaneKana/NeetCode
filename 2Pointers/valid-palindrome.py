@@ -1,23 +1,34 @@
-s = "Was it a car or a cat I saw"
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        
+        l, r = 0 , len(s) -1
 
-
-def is_alpha_num(c):
-
-    return (
-        ord("Z")>=ord(c)>=ord("A") or
-        ord("z")>=ord(c)>=ord("a") or
-        ord("9")>=ord(c)>=ord("0")
-    )
-
-
-l, r = 0, len(s) -1
-
-while True:
-    while l < r and not is_alpha_num(s[l]):
-        l+=1
-    while r > l and not is_alpha_num(s[r]):
-        r-=1
+        while l<r:
+            print(s[l], s[r])
+            if l<r and not self.is_alphanum(s[l]):
+                l+=1
+            
+            if r>l and not self.is_alphanum(s[r]):
+                r-=1
+            
+            if s[l].lower() != s[r].lower():
+                return False
+            
+            l, r = l+1, r-1
+            
+        return True
+        
     
-    if s[l].lower() != s[r].lower():
-        print(False)
-        break
+
+    def is_alphanum(self, c):
+        return(
+            ord("Z")>=ord(c) >= ord("A") or
+            ord("z")>=ord(c) >= ord("a") or
+            ord("9")>=ord(c) >= ord("0")
+        )
+    
+
+
+test = Solution()
+
+test.isPalindrome("Was it a car or a cat I saw?")
